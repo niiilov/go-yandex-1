@@ -1,0 +1,1 @@
+# go-yandex-1

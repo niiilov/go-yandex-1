@@ -12,7 +12,7 @@ type Config struct {
 
 func NewConfig(addr string) *Config {
 	if addr == "" {
-		addr = ":8080"
+		addr = ":8090"
 	}
 	slog.Info("Server Has Been Assigned An Address", "Addr", addr)
 	return &Config{

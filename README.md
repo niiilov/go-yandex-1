@@ -55,6 +55,11 @@ curl --location 'localhost:8090/api/v1/calculate' --header 'Content-Type: applic
 ```
 curl --location 'localhost:8090/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression": "2x++56*t"}'
 ```
+Примеры неккоректного ввода:
+- 2(1+1)
+- 2+(-1)
+- 2-+*3
+- 1+1=2
 
 ### Ошибка 500
 Возникает при непридвиденной панике

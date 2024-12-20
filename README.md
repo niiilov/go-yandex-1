@@ -38,9 +38,32 @@ curl --location 'localhost:8090/api/v1/calculate' --header 'Content-Type: applic
 ## Правила
 При работе с сервисом существуют некоторые ограничения
 
-| Правило | Пример неккоректного ввода | Пример корректного ввода | Ошибка |
-|-|--------|---|
-|Длинная запись в первом столбце|Запись в столбце 2|Запись в столбце 3|
-|Кртк зпс| |Слева нет записи|
+### Ошибка 405
+Возникает если на веб-сервис будет отправлен не POST запрос, например 
+```
+curl http://localhost:8090/api/v1/calculate
+```
+
+### Ошибка 400
+Возникает если на веб-сервис будет отправлен POST запрос, body которого сформирован неккоректно
+```
+curl --location 'localhost:8090/api/v1/calculate' --header 'Content-Type: application/json' --data '{not exspression}'
+```
+
+### Ошибка 422
+Возникает если выражение составленно неккоректно и его невозможно решить
+```
+curl --location 'localhost:8090/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression": "2x++56*t"}'
+```
+
+### Ошибка 500
+Возникает при непридвиденной панике
 
 ## Примеры выполнения
+
+|Запрос|Вывод|Статус|
+|:-|:-|:-:|
+|`curl --location 'localhost:8090/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression": "2+2"}'`|`{"result":"4"}`|200|
+|`curl http://localhost:8090/api/v1/calculate`|`{"error":"Method Not Allowed"}`|405|
+|`curl --location 'localhost:8090/api/v1/calculate' --header 'Content-Type: application/json' --data '{not exspression}'`|`{"error":"Bad Request"}`|400|
+|`curl --location 'localhost:8090/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression": "2x++56*t"}'`|`{"error":"Unprocessable Entity"}`|422|

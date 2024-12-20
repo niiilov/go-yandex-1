@@ -7,6 +7,15 @@ import (
 	"net/http"
 )
 
+func recoverPanic(next http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if err := recover(); err != nil {
+			errorResponse(w, http.StatusInternalServerError, "Internal Server Error") //500
+		}
+		next.ServeHTTP(w, r)
+	}
+}
+
 func CalcHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		errorResponse(w, http.StatusMethodNotAllowed, "Method Not Allowed") //405

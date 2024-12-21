@@ -55,7 +55,7 @@ curl --location 'localhost:8090/api/v1/calculate' --header 'Content-Type: applic
 ```
 curl --location 'localhost:8090/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression": "2x++56*t"}'
 ```
-Примеры неккоректного ввода:
+Примеры некорректного ввода:
 - 2(1+1)
 - 2+(-1)
 - 2-+*3

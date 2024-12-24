@@ -5,9 +5,11 @@
 Для запсука веб-сервиса проделайте следующие операции:
 1. Установите [Go](https://go.dev/) с официального сайта
 
+2. Установите [Git](https://git-scm.com/)
+
 2. Переместитесь в необходимую вам директорию и скопируйте репозиторий с помощью команды
     ```
-    git clone https://github.com/niiilov/go-yandex-1
+    git clone https://github.com/niiilov/go-yandex-1.git
     ```
 
 3. Перейдите в директорию проекта командой
@@ -55,7 +57,7 @@ curl --location 'localhost:8090/api/v1/calculate' --header 'Content-Type: applic
 ```
 curl --location 'localhost:8090/api/v1/calculate' --header 'Content-Type: application/json' --data '{"expression": "2x++56*t"}'
 ```
-Примеры неккоректного ввода:
+Примеры некорректного ввода:
 - 2(1+1)
 - 2+(-1)
 - 2-+*3
